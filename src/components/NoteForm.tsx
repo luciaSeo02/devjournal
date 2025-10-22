@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Note } from "../types/Note";
+import "./NoteForm.scss";
 
 interface Props {
   onAdd: (note: Note) => void;
@@ -24,7 +25,7 @@ export default function NoteForm({ onAdd }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="note-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Note title"

@@ -3,6 +3,9 @@ import type { Note } from "./types/Note";
 import { getNotes, saveNotes } from "./utils/storage";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import "./App.scss";
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -24,11 +27,14 @@ function App() {
   };
 
   return (
-    <main style={{ maxWidth: "800px", margin: "2rem auto" }}>
-      <h1>DevJournal</h1>
-      <NoteForm onAdd={addNote} />
-      <NoteList notes={notes} onDelete={deleteNote} />
-    </main>
+    <div className="app">
+      <Header />
+      <main>
+        <NoteForm onAdd={addNote} />
+        <NoteList notes={notes} onDelete={deleteNote} />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
