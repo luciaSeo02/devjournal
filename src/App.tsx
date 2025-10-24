@@ -1,40 +1,22 @@
-import { useState, useEffect } from "react";
-import type { Note } from "./types/Note";
-import { getNotes, saveNotes } from "./utils/storage";
-import NoteForm from "./components/NoteForm";
-import NoteList from "./components/NoteList";
+import "./App.scss";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NoteDetail from "./pages/NoteDetail";
+import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import "./App.scss";
 
 function App() {
-  const [notes, setNotes] = useState<Note[]>([]);
-
-  useEffect(() => {
-    setNotes(getNotes());
-  }, []);
-
-  const addNote = (note: Note) => {
-    const updated = [note, ...notes];
-    setNotes(updated);
-    saveNotes(updated);
-  };
-
-  const deleteNote = (id: string) => {
-    const updated = notes.filter((n) => n.id !== id);
-    setNotes(updated);
-    saveNotes(updated);
-  };
-
   return (
-    <div className="app">
+    <Router>
       <Header />
-      <main>
-        <NoteForm onAdd={addNote} />
-        <NoteList notes={notes} onDelete={deleteNote} />
+      <main className="app">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/note/:id" element={<NoteDetail />} />
+        </Routes>
       </main>
       <Footer />
-    </div>
+    </Router>
   );
 }
 

@@ -1,5 +1,6 @@
 import type { Note } from "../types/Note";
 import "./NoteCard.scss";
+import { Link } from "react-router-dom";
 
 interface Props {
   note: Note;
@@ -9,8 +10,12 @@ interface Props {
 export default function NoteCard({ note, onDelete }: Props) {
   return (
     <article className="note-card">
-      <h3>{note.title}</h3>
-      <p>{note.content}</p>
+      <h3>
+        <Link to={`/note/${note.id}`} className="note-link">
+          {note.title}
+        </Link>
+      </h3>
+      <p>{note.content.slice(0, 150)}...</p>
       <div className="note-footer">
         <small>{new Date(note.date).toLocaleString()}</small>
         <button onClick={() => onDelete(note.id)}>Delete</button>
