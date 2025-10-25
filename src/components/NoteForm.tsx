@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 import type { Note } from "../types/Note";
 import "./NoteForm.scss";
 
@@ -36,10 +38,11 @@ export default function NoteForm({ onAdd, existingCategories }: Props) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <textarea
-        placeholder="Write your note..."
+      <ReactQuill
         value={content}
-        onChange={(e) => setContent(e.target.value)}
+        onChange={setContent}
+        theme="snow"
+        placeholder="Write your note..."
       />
       <label>
         Category:

@@ -27,11 +27,27 @@
   }
 
   .note-content {
-    white-space: pre-wrap;
-    color: $text-dark;
-    line-height: 1.6;
-    font-size: 1rem;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    min-height: 200px;
     word-wrap: break-word;
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    b {
+      font-weight: bold;
+    }
+
+    i {
+      font-style: italic;
+    }
+
+    u {
+      text-decoration: underline;
+    }
   }
 
   input,

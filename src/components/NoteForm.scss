@@ -44,4 +44,36 @@
       background-color: color.adjust($accent, $lightness: -8%);
     }
   }
+  .ql-container {
+    border-radius: 6px;
+    min-height: 150px;
+  }
+
+  .ql-toolbar {
+    border-radius: 6px 6px 0 0;
+  }
+
+  .ql-editor {
+    min-height: 150px;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .note-preview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    line-height: 1.6;
+    p {
+      margin-bottom: 0.5rem;
+    }
+    strong {
+      color: #222;
+    }
+    em {
+      color: #555;
+    }
+  }
 }

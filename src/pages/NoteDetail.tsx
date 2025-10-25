@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import type { Note } from "../types/Note";
 import { getNotes, saveNotes } from "../utils/storage";
 import "./NoteDetail.scss";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 
 export default function NoteDetail() {
   const { id } = useParams<{ id: string }>();
@@ -39,7 +41,10 @@ export default function NoteDetail() {
         <>
           <h2>{note.title}</h2>
           <p className="note-date">{new Date(note.date).toLocaleString()}</p>
-          <div className="note-content">{note.content}</div>
+          <div
+            className="note-content"
+            dangerouslySetInnerHTML={{ __html: note.content }}
+          ></div>
 
           <div className="note-actions">
             <button onClick={() => setIsEditing(true)}>Edit</button>
@@ -54,9 +59,10 @@ export default function NoteDetail() {
             value={note.title}
             onChange={(e) => setNote({ ...note, title: e.target.value })}
           />
-          <textarea
+          <ReactQuill
+            theme="snow"
             value={note.content}
-            onChange={(e) => setNote({ ...note, content: e.target.value })}
+            onChange={(content) => setNote({ ...note, content })}
           />
           <div className="note-actions">
             <button onClick={handleSave}>Save</button>
