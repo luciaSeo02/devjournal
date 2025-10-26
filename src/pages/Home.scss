@@ -1,0 +1,37 @@
+@use "../styles/variables" as *;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: $card-bg;
+    padding: 0.8rem 1rem;
+    border-radius: $radius;
+    box-shadow: $shadow;
+    width: fit-content;
+
+    label {
+      font-weight: 500;
+      color: $text-muted;
+    }
+
+    select {
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      padding: 0.4rem 0.8rem;
+      background: $card-bg;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+
+      &:hover {
+        border-color: $primary;
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
+import "./Footer.scss";
 export default function Footer() {
   return (
     <footer className="app-footer">
-      <p>Made with love by Lucía Seoane</p>
+      <p>Made with ❤️ by Lucía Seoane</p>
     </footer>
   );
 }

@@ -1,66 +1,46 @@
 @use "../styles/variables" as *;
 
 .note-card {
-  background-color: $card-bg;
-  border-radius: $border-radious;
+  background: $card-bg;
+  border-radius: $radius;
   box-shadow: $shadow;
-  padding: 1rem 1.5rem;
-  margin: 1rem 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
-  box-sizing: border-box;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  }
+  padding: 1rem;
+  margin-bottom: 1rem;
 
   h3 {
-    margin: 0;
-    color: $accent;
-    font-size: 1.2rem;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    margin-bottom: 0.5rem;
+    a {
+      text-decoration: none;
+      color: $primary;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
-  p {
-    margin: 0.5rem 0;
-    color: $text-dark;
-    line-height: 1.5;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    word-break: break-word;
+  .note-preview {
+    color: $text-main;
+    margin-bottom: 0.5rem;
   }
 
   .note-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 0.5rem;
-
-    small {
-      color: $text-light;
-      font-size: 0.8rem;
-    }
 
     button {
       background: transparent;
-      border: 1px solid $accent;
-      color: $accent;
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
+      border: none;
+      color: $danger;
       cursor: pointer;
-      transition: all 0.2s ease;
-
+      font-weight: 600;
       &:hover {
-        background-color: $accent;
-        color: white;
+        text-decoration: underline;
       }
+    }
+
+    small {
+      color: $text-muted;
     }
   }
 }

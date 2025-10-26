@@ -3,6 +3,7 @@ import type { Note } from "../types/Note";
 import { getNotes, saveNotes } from "../utils/storage";
 import NoteForm from "../components/NoteForm";
 import NoteList from "../components/NoteList";
+import "./Home.scss";
 
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -27,12 +28,9 @@ export default function Home() {
   const categories = Array.from(
     new Set(notes.map((n) => n.category).filter(Boolean))
   );
-  //   const filteredNotes = filter
-  //     ? notes.filter((n) => n.category === filter)
-  //     : notes;
 
   return (
-    <div className="app">
+    <div className="home">
       <NoteForm onAdd={addNote} existingCategories={categories} />
       {categories.length > 0 && (
         <div className="filter">
@@ -51,7 +49,10 @@ export default function Home() {
           </select>
         </div>
       )}
-      <NoteList notes={notes} onDelete={deleteNote} />
+      <NoteList
+        notes={filter ? notes.filter((n) => n.category === filter) : notes}
+        onDelete={deleteNote}
+      />
     </div>
   );
 }
