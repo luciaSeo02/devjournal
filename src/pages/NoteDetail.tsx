@@ -5,12 +5,14 @@ import { getNotes, saveNotes } from "../utils/storage";
 import "./NoteDetail.scss";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
+import ConfirmModal from "../components/ConfirmModal";
 
 export default function NoteDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [note, setNote] = useState<Note | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     const notes = getNotes();
@@ -37,6 +39,13 @@ export default function NoteDetail() {
 
   return (
     <div className="note-detail">
+      {showConfirm && (
+        <ConfirmModal
+          message="Are you sure you want to delete this note?"
+          onConfirm={handleDelete}
+          onCancel={() => setShowConfirm(false)}
+        />
+      )}
       {!isEditing ? (
         <>
           <h2>{note.title}</h2>
@@ -48,7 +57,7 @@ export default function NoteDetail() {
 
           <div className="note-actions">
             <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={() => setShowConfirm(true)}>Delete</button>
             <button onClick={() => navigate("/")}>Back</button>
           </div>
         </>

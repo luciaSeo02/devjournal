@@ -8,6 +8,7 @@ import "./Home.scss";
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [filter, setFilter] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     setNotes(getNotes());
@@ -31,7 +32,22 @@ export default function Home() {
 
   return (
     <div className="home">
-      <NoteForm onAdd={addNote} existingCategories={categories} />
+      <button
+        className="add-note-button"
+        onClick={() => setShowForm(!showForm)}
+      >
+        {showForm ? "Close" : "Create Note"}
+      </button>
+
+      {showForm && (
+        <NoteForm
+          onAdd={(note) => {
+            addNote(note);
+            setShowForm(false);
+          }}
+          existingCategories={categories}
+        />
+      )}
       {categories.length > 0 && (
         <div className="filter">
           <label htmlFor="filter">Filter by category:</label>

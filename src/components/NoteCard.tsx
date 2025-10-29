@@ -1,5 +1,7 @@
+import { useState } from "react";
 import type { Note } from "../types/Note";
 import "./NoteCard.scss";
+import ConfirmModal from "./ConfirmModal";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -8,8 +10,21 @@ interface Props {
 }
 
 export default function NoteCard({ note, onDelete }: Props) {
+  const [showConfirm, setShowConfirm] = useState(false);
+
   return (
     <article className="note-card">
+      {showConfirm && (
+        <ConfirmModal
+          message="Are you sure you want to delete this note?"
+          onConfirm={() => {
+            onDelete(note.id);
+            setShowConfirm(false);
+          }}
+          onCancel={() => setShowConfirm(false)}
+        />
+      )}
+
       <h3>
         <Link to={`/note/${note.id}`} className="note-link">
           {note.title}
@@ -26,7 +41,7 @@ export default function NoteCard({ note, onDelete }: Props) {
       />
       <div className="note-footer">
         <small>{new Date(note.date).toLocaleString()}</small>
-        <button onClick={() => onDelete(note.id)}>Delete</button>
+        <button onClick={() => setShowConfirm(true)}>Delete</button>
       </div>
     </article>
   );
