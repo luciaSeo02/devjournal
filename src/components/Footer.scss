@@ -7,4 +7,21 @@ footer {
   padding: 1rem;
   font-size: 0.9rem;
   border-top: 1px solid $border-color;
+  .social-links {
+    margin-top: 0.3rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    a {
+      color: #1e40af;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
 }
